@@ -14,7 +14,6 @@ class PyPiper():
             with open(f'{os.getcwd()}/voices/voices.json','wb') as w:
                 w.write(voice_file.content)
             w.close()
-            #subprocess.run(f"wget -O {os.getcwd()}/voices/voices.json https://huggingface.co/rhasspy/piper-voices/raw/main/voices.json", shell=True)
         with open(f"{os.getcwd()}/voices/voices.json","rb") as file:
             voice_main=json.loads(file.read())
         file.close()
@@ -43,14 +42,9 @@ class PyPiper():
             with open(f'{os.getcwd()}/voices/{file}.json','wb') as j:
                 j.write(json_file.content)
             j.close()
-            #subprocess.run(f"wget -O {os.getcwd()}/voices/{file} {m_path}", shell=True)
-            #subprocess.run(f"wget -O {os.getcwd()}/voices/{file}.json {m_path}.json", shell=True)
-        with open(f'{os.getcwd()}/voices/{file}.json','rb') as f:
-            self.json_ob=f.read()
-        f.close
         print("Model Loaded")
-        #return json_ob
     def tts(self, in_text,model,length=2,noise=0.1,width=1,sen_pause=1):
+        load_mod(instr=model)
         text = in_text.replace(". ",".\n")
         model_path=f'{os.getcwd()}/voices/{model}.onnx'
         json_path=f'{os.getcwd()}/voices/{model}.onnx.json'
