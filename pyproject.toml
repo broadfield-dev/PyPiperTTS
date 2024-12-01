@@ -12,6 +12,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+[dependencies]
+piper-tts
+
 [project.urls]
 Homepage = "https://github.com/broadfield-dev/PyPiperTTS"
 Issues = "https://github.com/broadfield-dev/PyPiperTTS/issues"
