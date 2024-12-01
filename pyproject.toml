@@ -1,4 +1,5 @@
 [project]
+dynamic = ["dependencies"]
 name = "PyPiperTTS"
 version = "0.0.1"
 authors = [
@@ -12,8 +13,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-[dependencies]
-piper-tts
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
 
 [project.urls]
 Homepage = "https://github.com/broadfield-dev/PyPiperTTS"
