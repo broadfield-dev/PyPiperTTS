@@ -42,6 +42,7 @@ class PyPiper():
             with open(f'{os.getcwd()}/voices/{file}.json','wb') as j:
                 j.write(json_file.content)
             j.close()
+        self.json_ob=f'{os.getcwd()}/voices/{file}.json'
         print("Model Loaded")
     def tts(self, in_text,model,length=2,noise=0.1,width=1,sen_pause=1):
         load_mod(instr=model)
@@ -53,7 +54,7 @@ class PyPiper():
         --length_scale {length} --noise_scale {noise} --noise_w {width} --sentence_silence {sen_pause}"""
         subprocess.run(command, shell=True)
         return output_file
-    def save_set(model,length,noise,width,sen_pause):
+    def save_set(self,model,length,noise,width,sen_pause):
         if not os.path.isdir(f'{os.getcwd()}/saved'):
             os.mkdir(f'{os.getcwd()}/saved')
         set_json={"model":model,"length":length,"noise":noise,"width":width,"pause":sen_pause}
@@ -62,14 +63,10 @@ class PyPiper():
             file.write(json.dumps(set_json,indent=4))
         file.close()
         return(f'{file_name}.json')
-    def load_set(set_file):
+    def load_set(self,set_file):
         with open(set_file,'r') as file:
             set_json=json.loads(file.read())
         file.close()
         return(set_json['model'],set_json['length'],
             set_json['noise'],set_json['width'],
             set_json['pause'])
-    def exp(exp_file):
-        txt="""PiperTTS is a powerful text-to-speech TTS node designed to convert written text into high-quality spoken audio. This node leverages advanced voice synthesis models to generate natural-sounding speech, making it an invaluable tool for AI developers looking to add a vocal element to their projects."""
-        exp_file=f"./example/en_US-ljspeech-high_2__21_0__88_0__22_2__6.json"
-        return(txt,exp_file)
