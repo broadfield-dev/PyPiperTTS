@@ -14,7 +14,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 [tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt","piper-phonemize @ git+https://github.com/rhasspy/piper-phonemize.git@master"]}
+dependencies = {file = ["requirements.txt"]}
 
 [project.urls]
 Homepage = "https://github.com/broadfield-dev/PyPiperTTS"
