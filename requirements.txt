@@ -1,1 +1,2 @@
 piper-tts
+piper-phonemize
