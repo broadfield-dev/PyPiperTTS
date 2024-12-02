@@ -1,2 +1,2 @@
 piper-tts
-piper-phonemize
+git+https://github.com/rhasspy/piper-phonemize.git
