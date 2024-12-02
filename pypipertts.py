@@ -50,7 +50,7 @@ class PyPiper():
         model_path=f'{os.getcwd()}/voices/{model}.onnx'
         json_path=f'{os.getcwd()}/voices/{model}.onnx.json'
         output_file = f"{uuid.uuid4()}.wav"
-        command = f"""echo '{text}' | piper --model {model_path} --config {json_path} --output_file {output_file} /
+        command = f"""echo '{text}' | piper --model {model_path} --config {json_path} --output_file {output_file}\
         --length_scale {length} --noise_scale {noise} --noise_w {width} --sentence_silence {sen_pause}"""
         subprocess.run(command, shell=True)
         return output_file
