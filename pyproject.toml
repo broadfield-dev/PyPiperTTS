@@ -14,7 +14,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 [tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
+dependencies = {file = ["requirements.txt","piper_phonemize @ git+https://github.com/rhasspy/piper-phonemize"]}
 [build-system]
 requires = [
     "setuptools>=42",
