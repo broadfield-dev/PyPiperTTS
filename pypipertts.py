@@ -45,7 +45,7 @@ class PyPiper():
         self.json_ob=f'{os.getcwd()}/voices/{file}.json'
         print("Model Loaded")
     def tts(self, in_text,model,length=2,noise=0.1,width=1,sen_pause=1):
-        load_mod(instr=model)
+        self.load_mod(instr=model)
         text = in_text.replace(". ",".\n")
         model_path=f'{os.getcwd()}/voices/{model}.onnx'
         json_path=f'{os.getcwd()}/voices/{model}.onnx.json'
