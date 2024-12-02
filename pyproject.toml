@@ -14,13 +14,8 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 [tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt","piper_phonemize @ git+https://github.com/rhasspy/piper-phonemize"]}
-[build-system]
-requires = [
-    "setuptools>=42",
-    "pybind11>=2.10.0",
-]
-build-backend = "setuptools.build_meta"
+dependencies = {file = ["requirements.txt"]}
+
 [project.urls]
 Homepage = "https://github.com/broadfield-dev/PyPiperTTS"
 Issues = "https://github.com/broadfield-dev/PyPiperTTS/issues"
