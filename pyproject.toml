@@ -15,7 +15,12 @@ classifiers = [
 ]
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
-
+[build-system]
+requires = [
+    "setuptools>=42",
+    "pybind11>=2.10.0",
+]
+build-backend = "setuptools.build_meta"
 [project.urls]
 Homepage = "https://github.com/broadfield-dev/PyPiperTTS"
 Issues = "https://github.com/broadfield-dev/PyPiperTTS/issues"
