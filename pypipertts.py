@@ -82,7 +82,7 @@ class PyPiper():
                 frame_rate=22050,
                 channels=1
             )
-            chunk.export(buffer, format="wav")
+            audio_segment.export(buffer, format="wav")
             self.buffer=buffer.getvalue()
             yield buffer.getvalue()
     
