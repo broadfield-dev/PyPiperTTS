@@ -3,6 +3,8 @@ import os
 import json
 import uuid
 import requests
+from pydub import AudioSegment
+from pydub.silence import split_on_silence
 
 class PyPiper():
     def __init__(self):
@@ -44,6 +46,7 @@ class PyPiper():
             j.close()
         self.json_ob=f'{os.getcwd()}/voices/{file}.json'
         print("Model Loaded")
+    
     def tts(self, in_text,model,length=2,noise=0.1,width=1,sen_pause=1):
         self.load_mod(instr=model)
         text = in_text.replace(". ",".\n")
@@ -54,6 +57,38 @@ class PyPiper():
         --length_scale {length} --noise_scale {noise} --noise_w {width} --sentence_silence {sen_pause}"""
         subprocess.run(command, shell=True)
         return output_file
+
+    def stream_tts(self,in_text,model="en_US-joe-medium",length=1,noise=1,width=1,sen_pause=1):
+        text=in_text
+        #text = in_text.replace(". ",".\n")
+        model_path=f'{os.getcwd()}/voices/{model}.onnx'
+        json_path=f'{os.getcwd()}/voices/{model}.onnx.json'
+        command = f"""echo '{text}' | piper --model {model_path} --config {json_path} --output-raw\
+        --length_scale {length} --noise_scale {noise} --noise_w {width} --sentence_silence {sen_pause}"""
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        buffer = io.BytesIO()
+        while True:
+            data = process.stdout.read(88200)
+            audio_segment = AudioSegment(
+                data=data,
+                sample_width=2,
+                frame_rate=22050,
+                channels=1
+            )
+            audio_chunks = split_on_silence(
+                audio_segment, 
+                min_silence_len=5000,
+                silence_thresh=-16,
+                keep_silence=100
+            )
+            for chunk in audio_chunks:
+                chunk.export(buffer, format="wav")
+                if not data:
+                    break
+                self.buffer=buffer.getvalue()
+                yield buffer.getvalue()
+
+    
     def save_set(self,model,length,noise,width,sen_pause):
         if not os.path.isdir(f'{os.getcwd()}/saved'):
             os.mkdir(f'{os.getcwd()}/saved')
