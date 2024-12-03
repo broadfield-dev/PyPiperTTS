@@ -47,7 +47,9 @@ class PyPiper():
         self.json_ob=f'{os.getcwd()}/voices/{file}.json'
         print("Model Loaded")
     
-    def tts(self, in_text,model,length=2,noise=0.1,width=1,sen_pause=1):
+    def tts(self, in_text,model="",length=2,noise=0.1,width=1,sen_pause=1):
+        if not model:
+            model=self.model
         self.load_mod(instr=model)
         text = in_text.replace(". ",".\n")
         model_path=f'{os.getcwd()}/voices/{model}.onnx'
@@ -58,7 +60,9 @@ class PyPiper():
         subprocess.run(command, shell=True)
         return output_file
 
-    def stream_tts(self,in_text,model="en_US-joe-medium",length=1,noise=1,width=1,sen_pause=1):
+    def stream_tts(self, in_text,model="",length=1,noise=1,width=1,sen_pause=1):
+        if not model:
+            model=self.model
         text=in_text
         #text = in_text.replace(". ",".\n")
         model_path=f'{os.getcwd()}/voices/{model}.onnx'
@@ -87,7 +91,6 @@ class PyPiper():
                     break
                 self.buffer=buffer.getvalue()
                 yield buffer.getvalue()
-
     
     def save_set(self,model,length,noise,width,sen_pause):
         if not os.path.isdir(f'{os.getcwd()}/saved'):
@@ -98,6 +101,7 @@ class PyPiper():
             file.write(json.dumps(set_json,indent=4))
         file.close()
         return(f'{file_name}.json')
+        
     def load_set(self,set_file):
         with open(set_file,'r') as file:
             set_json=json.loads(file.read())
