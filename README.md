@@ -28,9 +28,8 @@ This will generate a WAV file containing the synthesized speech.
 ### Streaming Speech
 You can also stream the synthesized speech in real-time using the stream_tts method:
 ```Python
-for audio_chunk in piper.stream_tts("Hello, world!"):
-    # Process the audio chunk
-    print(audio_chunk)
+streamed_audio = piper.stream_tts("Hello, world!")
+# play streamed audio
 ```
 ### Saving and Loading Model Settings
 You can save and load model settings using the save_set and load_set methods:
