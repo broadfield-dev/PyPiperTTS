@@ -1,19 +1,19 @@
 PyPiperTTS: A Python Interface for Piper Text-to-Speech
 ===========================================================
-PyPiper is a Python library that provides a simple and intuitive interface to the Piper text-to-speech system. It allows you to generate high-quality speech from text using pre-trained models.
+PyPiperTTS is a Python library that provides a simple and intuitive interface to the Piper text-to-speech system. It allows you to generate high-quality speech from text using pre-trained models.
 
 Installation
 -----
-To use PyPiper, you'll need to have Python 3.6 or later installed on your system. You can install the required dependencies using pip:
+To use PyPiperTTS, you'll need to have Python 3.6 or later installed on your system. You can install the required dependencies using pip:
 ```Bash
 pip install -r requirements.txt
 ```
 Usage
 -----
 ### Initializing the PyPiper Object
-To start using PyPiper, create an instance of the PyPiper class:
+To start using PyPiperTTS, create an instance of the PyPiper class:
 ```Python
-from pypiper import PyPiper
+from pypipertts import PyPiper
 
 piper = PyPiper()
 ```
