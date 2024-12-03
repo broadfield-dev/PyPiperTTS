@@ -74,6 +74,8 @@ class PyPiper():
         buffer = io.BytesIO()
         while True:
             data = process.stdout.read(88200)
+            if not data:
+                    break
             audio_segment = AudioSegment(
                 data=data,
                 sample_width=2,
@@ -88,8 +90,6 @@ class PyPiper():
             )
             for chunk in audio_chunks:
                 chunk.export(buffer, format="wav")
-                if not data:
-                    break
                 self.buffer=buffer.getvalue()
                 yield buffer.getvalue()
     
