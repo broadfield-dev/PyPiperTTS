@@ -82,16 +82,9 @@ class PyPiper():
                 frame_rate=22050,
                 channels=1
             )
-            audio_chunks = split_on_silence(
-                audio_segment, 
-                min_silence_len=5000,
-                silence_thresh=-16,
-                keep_silence=100
-            )
-            for chunk in audio_chunks:
-                chunk.export(buffer, format="wav")
-                self.buffer=buffer.getvalue()
-                yield buffer.getvalue()
+            chunk.export(buffer, format="wav")
+            self.buffer=buffer.getvalue()
+            yield buffer.getvalue()
     
     def save_set(self,model,length,noise,width,sen_pause):
         if not os.path.isdir(f'{os.getcwd()}/saved'):
