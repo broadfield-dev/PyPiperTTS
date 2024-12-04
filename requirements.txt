@@ -1,2 +1,1 @@
-piper-tts
 pydub==0.25.1
